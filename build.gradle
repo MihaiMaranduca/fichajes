@@ -1,0 +1,86 @@
+plugins {
+    id 'io.jmix' version '1.2.0'
+    id 'java'
+    id "com.microsoft.azure.azurewebapp" version "1.5.0"
+    id 'war'
+}
+
+apply plugin: 'org.springframework.boot'
+
+jmix {
+    bomVersion = '1.2.4'
+    projectId = 'fich'
+}
+
+group = 'com.hiperusera'
+version = '0.0.1-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    maven {
+        url 'https://global.repo.jmix.io/repository/public'
+    }
+    maven {
+        url = 'https://global.repo.jmix.io/repository/premium'
+        credentials {
+            username = rootProject['premiumRepoUser']
+            password = rootProject['premiumRepoPass']
+        }
+    }
+}
+
+dependencies {
+    implementation 'io.jmix.core:jmix-core-starter'
+    implementation 'io.jmix.data:jmix-eclipselink-starter'
+    implementation 'io.jmix.ui:jmix-ui-starter'
+    implementation 'io.jmix.ui:jmix-ui-data-starter'
+    implementation 'io.jmix.ui:jmix-ui-widgets-compiled'
+    implementation 'io.jmix.security:jmix-security-starter'
+    implementation 'io.jmix.security:jmix-security-ui-starter'
+    implementation 'io.jmix.security:jmix-security-data-starter'
+    implementation 'io.jmix.localfs:jmix-localfs-starter'
+    implementation 'io.jmix.datatools:jmix-datatools-starter'
+    implementation 'io.jmix.datatools:jmix-datatools-ui-starter'
+    implementation 'commons-net:commons-net:3.8.0'
+
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+    implementation("org.postgresql:postgresql")
+    implementation("io.jmix.rest:jmix-rest-starter")
+    implementation("io.jmix.security:jmix-security-oauth2-starter")
+    themes("io.jmix.ui:jmix-ui-themes")
+    implementation("io.jmix.ui:jmix-ui-themes")
+    implementation("io.jmix.quartz:jmix-quartz-starter")
+
+
+    implementation("commons-net:commons-net:3.8.0")
+    implementation("io.jmix.notifications:jmix-notifications-starter")
+    implementation("io.jmix.notifications:jmix-notifications-ui-starter")
+}
+
+test {
+    useJUnitPlatform()
+}
+
+azurewebapp{
+    subscription = '90bd0a15-9444-4f24-bf67-fe3d1e5fdff1'
+    resourceGroup = 'Fichaje'
+    appServicePlanName = 'ASP-Fichaje-915a'
+    appName = 'Fichaje'
+    pricingTier = 'P1v2'
+    region = 'France Central'
+    runtime {
+        os = 'Windows'
+        webContainer = 'Tomcat 9.0'
+        javaVersion = 'Java 11'
+    }
+    appSettings {
+        put('main.datasource.url', 'jdbc:postgresql://localhost/fichajes')
+        put('main.datasource.username', 'fichajes')
+        put('main.datasource.password', 'fichajes')
+    }
+}

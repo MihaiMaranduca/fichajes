@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1" author="fich">
+        <createTable tableName="FICH_FICHAJE">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_FICH_FICHAJE"/>
+            </column>
+            <column name="NUMERO_EMPLEADO" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NOMBRE_EMPLEADO" type="VARCHAR(255)"/>
+            <column name="APELLIDO_EMPLEADO" type="VARCHAR(255)"/>
+            <column name="FECHA_YHORA" type="DATETIME"/>
+            <column name="NUMERO_SERIE" type="VARCHAR(255)"/>
+            <column name="CENTRO" type="VARCHAR(255)"/>
+            <column name="CREATED_BY" type="VARCHAR(255)"/>
+            <column name="CREATED_DATE" type="DATETIME"/>
+            <column name="LAST_MODIFIED_BY" type="VARCHAR(255)"/>
+            <column name="LAST_MODIFIED_DATE" type="DATETIME"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="2" author="fich">
+        <addUniqueConstraint columnNames="NUMERO_EMPLEADO" constraintName="UC_FICH_FICHAJE_NUMERO_EMPLEADO"
+                             tableName="FICH_FICHAJE"/>
+    </changeSet>
+</databaseChangeLog>

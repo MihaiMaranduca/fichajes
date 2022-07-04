@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+<!--    <changeSet id="1" author="fich">-->
+<!--        <addColumn tableName="FICH_FICHAJE">-->
+<!--            <column name="FECHA_Y_HORA" type="LOCALDATETIME"/>-->
+<!--        </addColumn>-->
+<!--    </changeSet>-->
+<!--    <changeSet id="2" author="fich">-->
+<!--        <dropColumn columnName="fecha_y_hora_id" tableName="fich_fichaje"/>-->
+<!--    </changeSet>-->
+</databaseChangeLog>

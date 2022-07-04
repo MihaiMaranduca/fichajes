@@ -1,0 +1,14 @@
+@import "Style-defaults";
+@import "addons";
+@import "Style";
+
+.Style {
+  @include addons;
+  @include Style;
+}
+
+
+.rojo{
+    background-color: #CD5C5C;
+    color: white;
+}

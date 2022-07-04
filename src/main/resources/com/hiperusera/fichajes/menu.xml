@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<menu-config xmlns="http://jmix.io/schema/ui/menu">
+
+    <menu id="application" caption="msg://com.hiperusera.fichajes/menu.application" insertBefore="administration">
+        <item screen="fich_User.browse" caption="msg://com.hiperusera.fichajes.screen.user/UserBrowse.caption"/>
+        <item screen="themeSettingsScreen" caption="msg://io.jmix.ui.app.themesettings/themeSettings.caption"/>
+        <item screen="fich_Fichaje.browse" caption="msg://com.hiperusera.fichajes.screen.fichaje/fichajeBrowse.menu"/>
+        <item screen="fich_TipoTienda.browse"
+              caption="msg://com.hiperusera.fichajes.screen.tipotienda/tipoTiendaBrowse.menu"/>
+    </menu>
+
+</menu-config>

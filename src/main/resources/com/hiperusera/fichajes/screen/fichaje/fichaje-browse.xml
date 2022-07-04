@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://jmix.io/schema/ui/window"
+        xmlns:c="http://jmix.io/schema/ui/jpql-condition"
+        caption="msg://fichajeBrowse.caption"
+        focusComponent="fichajesTable">
+    <data>
+        <collection id="fichajesDc"
+                    class="com.hiperusera.fichajes.entity.Fichaje"
+                    fetchPlan="_base">
+            <loader id="fichajesDl" maxResults="2">
+                <query>
+                    <![CDATA[select e from fich_Fichaje e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <facets>
+        <dataLoadCoordinator/>
+        <screenSettings id="settingsFacet" auto="true"/>
+    </facets>
+    <actions>
+        <action id="lookupSelectAction"
+                caption="msg:///actions.Select"
+                icon="LOOKUP_OK"
+                primary="true"
+                shortcut="${COMMIT_SHORTCUT}"/>
+        <action id="lookupCancelAction"
+                caption="msg:///actions.Cancel"
+                icon="LOOKUP_CANCEL"/>
+    </actions>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="fichajesTable" spacing="true">
+        <filter id="filter"
+                dataLoader="fichajesDl">
+            <properties include=".*"
+                        excludeProperties="id, numeroSerie, createdBy, createdDate, lastModifiedBy, lastModifiedDate,
+                                            marcaTiempo, tipoFichaje"/>
+        </filter>
+        <groupTable id="fichajesTable"
+                    width="100%"
+                    dataContainer="fichajesDc"
+                    multiselect="true">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="refresh" type="refresh"/>
+                <action id="remove" type="remove"/>
+                <action id="bulkEdit" type="bulkEdit"/>
+            </actions>
+            <columns>
+                <column id="fecha"/>
+                <column id="centro"/>
+                <column id="numeroTarjeta"/>
+                <column id="numeroEmpleado"/>
+                <column id="nombreEmpleado"/>
+                <column id="apellidoEmpleado"/>
+                <column id="marcaTiempo"/>
+                <column id="tipoFichaje"/>
+                <column id="enviado"/>
+                <column id="revisado"/>
+            </columns>
+            <simplePagination/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="fichajesTable.create"/>
+                <button id="editBtn" action="fichajesTable.edit"/>
+                <button id="refreshBtn" action="fichajesTable.refresh"/>
+                <button id="removeBtn" action="fichajesTable.remove"/>
+                <button id="button_quitarDuplicados" caption="msg://button_quitarDuplicados.caption" icon="font-icon:REMOVE"
+                />
+                <button id="fichajesTableBulkEditBtn" action="fichajesTable.bulkEdit"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>
